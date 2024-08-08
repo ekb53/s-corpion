@@ -119,22 +119,6 @@ export default function Component() {
     }
   }
 
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-];
-
-const chartConfig: ChartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
-  },
-} satisfies ChartConfig
-  
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="sticky top-0 z-40 w-full border-b bg-background">
@@ -411,6 +395,21 @@ const chartConfig: ChartConfig = {
 }
 
 function AreachartChart({ className }: AreachartChartProps) {
+  const chartData = [
+  { month: "January", desktop: 186 },
+  { month: "February", desktop: 305 },
+  { month: "March", desktop: 237 },
+  { month: "April", desktop: 73 },
+  { month: "May", desktop: 209 },
+  { month: "June", desktop: 214 },
+];
+
+const chartConfig: ChartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+};
   return (
     <ChartContainer config={chartConfig} className={`min-h-[300px] ${className}`}>
       <AreaChart
@@ -440,6 +439,7 @@ function AreachartChart({ className }: AreachartChartProps) {
     </ChartContainer>
   );
 }
+
 
 function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
