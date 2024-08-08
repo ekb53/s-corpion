@@ -18,6 +18,21 @@ import { Input } from "@/components/ui/input"
 import { CartesianGrid, XAxis, Line, LineChart, Area, AreaChart } from "recharts"
 import { ChartTooltipContent, ChartTooltip, ChartContainer } from "@/components/ui/chart"
 
+// Define an interface for the business role
+interface BusinessRole {
+  id: number;
+  title: string;
+  description: string;
+  averageSalary: number;
+  medianSalary: number;
+  salaryRange: {
+    min: number;
+    max: number;
+  };
+  jobGrowth: number;
+  jobOutlook: string;
+}
+
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedRoles, setSelectedRoles] = useState([])
