@@ -285,11 +285,15 @@ export default function Component() {
                           <h3 className="text-sm font-medium">{role.title}</h3>
                           <p className="text-xs text-muted-foreground">{role.description}</p>
                         </div>
-                        <Button variant={selectedRoles.includes(role) ? "primary" : "outline"} size="icon">
-                          {selectedRoles.includes(role) ? (
-                            <CheckIcon className="h-4 w-4" />
+                        <Button 
+                          variant={selectedRoles.some(r => r.id === role.id) ? "default" : "outline"} 
+                          size="icon"
+                          onClick={() => handleRoleSelect(role)}
+                        >
+                          {selectedRoles.some(r => r.id === role.id) ? (
+                          <CheckIcon className="h-4 w-4" />
                           ) : (
-                            <PlusIcon className="h-4 w-4" />
+                          <PlusIcon className="h-4 w-4" />
                           )}
                         </Button>
                       </div>
