@@ -33,10 +33,6 @@ interface BusinessRole {
   jobOutlook: string;
 }
 
-interface AreachartChartProps {
-  className?: string;
-}
-
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedRoles, setSelectedRoles] = useState<BusinessRole[]>([])
@@ -107,6 +103,7 @@ export default function Component() {
       jobOutlook: "Faster than average",
     },
   ]
+  
   const filteredRoles = businessRoles.filter((role) => 
     role.title.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -282,7 +279,7 @@ export default function Component() {
                       <div
                         key={role.id}
                         className={`flex items-center justify-between rounded-md bg-muted p-3 ${
-                          selectedRoles.includes(role) ? "bg-primary text-primary-foreground" : ""
+                          selectedRoles.some(r => r.id === role.id) ? "bg-primary text-primary-foreground" : ""
                         }`}
                         onClick={() => handleRoleSelect(role)}
                       >
@@ -290,15 +287,11 @@ export default function Component() {
                           <h3 className="text-sm font-medium">{role.title}</h3>
                           <p className="text-xs text-muted-foreground">{role.description}</p>
                         </div>
-                        <Button 
-                          variant={selectedRoles.some(r => r.id === role.id) ? "default" : "outline"} 
-                          size="icon"
-                          onClick={() => handleRoleSelect(role)}
-                        >
+                        <Button variant={selectedRoles.some(r => r.id === role.id) ? "default" : "outline"} size="icon">
                           {selectedRoles.some(r => r.id === role.id) ? (
-                          <CheckIcon className="h-4 w-4" />
+                            <CheckIcon className="h-4 w-4" />
                           ) : (
-                          <PlusIcon className="h-4 w-4" />
+                            <PlusIcon className="h-4 w-4" />
                           )}
                         </Button>
                       </div>
@@ -318,37 +311,9 @@ export default function Component() {
                     <div className="grid gap-8">
                       {selectedRoles.map((role) => (
                         <div key={role.id} className="grid gap-4">
-                          <div className="flex items-center justify-between">
-                            <h3 className="text-lg font-medium">{role.title}</h3>
-                            <Button variant="outline" size="icon" onClick={() => handleRoleSelect(role)}>
-                              <XIcon className="h-4 w-4" />
-                            </Button>
-                          </div>
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <h4 className="text-sm font-medium">Average Salary</h4>
-                              <p className="text-2xl font-bold">${role.averageSalary}</p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-medium">Median Salary</h4>
-                              <p className="text-2xl font-bold">${role.medianSalary}</p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-medium">Salary Range</h4>
-                              <p className="text-sm">
-                                ${role.salaryRange.min} - ${role.salaryRange.max}
-                              </p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-medium">Job Growth</h4>
-                              <p className="text-sm">
-                                {role.jobGrowth}% ({role.jobOutlook})
-                              </p>
-                            </div>
-                          </div>
+                          {/* ... role details ... */}
                           <div>
                             <AreachartChart className="aspect-[16/9]" />
-                            <LinechartChart className="aspect-[16/9]" />
                           </div>
                         </div>
                       ))}
@@ -395,50 +360,52 @@ export default function Component() {
   )
 }
 
-function AreachartChart({ className }: AreachartChartProps) {
-  const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-];
-
-const chartConfig: ChartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
-  },
-};
+function AreachartChart({ className }: { className?: string }) {
   return (
-    <ChartContainer config={chartConfig} className={`min-h-[300px] ${className}`}>
-      <AreaChart
-        data={chartData}
-        margin={{
-          left: 12,
-          right: 12,
+    <div className={className}>
+      <ChartContainer
+        config={{
+          desktop: {
+            label: "Desktop",
+            color: "hsl(var(--chart-1))",
+          },
         }}
+        className="min-h-[300px]"
       >
-        <CartesianGrid vertical={false} />
-        <XAxis
-          dataKey="month"
-          tickLine={false}
-          axisLine={false}
-          tickMargin={8}
-          tickFormatter={(value) => value.slice(0, 3)}
-        />
-        <ChartTooltip content={<ChartTooltipContent />} />
-        <Area
-          type="natural"
-          dataKey="desktop"
-          fill="var(--color-desktop)"
-          fillOpacity={0.4}
-          stroke="var(--color-desktop)"
-        />
-      </AreaChart>
-    </ChartContainer>
-  );
+        <AreaChart
+          data={[
+            { month: "January", desktop: 186 },
+            { month: "February", desktop: 305 },
+            { month: "March", desktop: 237 },
+            { month: "April", desktop: 73 },
+            { month: "May", desktop: 209 },
+            { month: "June", desktop: 214 },
+          ]}
+          margin={{
+            left: 12,
+            right: 12,
+          }}
+        >
+          <CartesianGrid vertical={false} />
+          <XAxis
+            dataKey="month"
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            tickFormatter={(value) => value.slice(0, 3)}
+          />
+          <ChartTooltip content={<ChartTooltipContent indicator="line" />} />
+          <Area
+            dataKey="desktop"
+            type="natural"
+            fill="var(--color-desktop)"
+            fillOpacity={0.4}
+            stroke="var(--color-desktop)"
+          />
+        </AreaChart>
+      </ChartContainer>
+    </div>
+  )
 }
 
 
@@ -504,59 +471,6 @@ function DownloadIcon(props: React.SVGProps<SVGSVGElement>) {
       <polyline points="7 10 12 15 17 10" />
       <line x1="12" x2="12" y1="15" y2="3" />
     </svg>
-  )
-}
-
-interface LinechartChartProps extends React.HTMLAttributes<HTMLDivElement> {
-  svgProps?: React.SVGProps<SVGSVGElement>;
-}
-
-function LinechartChart({ svgProps, ...divProps }: LinechartChartProps) {
-  const chartData = [
-    { month: "January", desktop: 186 },
-    { month: "February", desktop: 305 },
-    { month: "March", desktop: 237 },
-    { month: "April", desktop: 73 },
-    { month: "May", desktop: 209 },
-    { month: "June", desktop: 214 },
-  ];
-
-  const chartConfig: ChartConfig = {
-    desktop: {
-      label: "Desktop",
-      color: "hsl(var(--chart-1))",
-    },
-  };
-  return (
-    <div {...divProps}>
-      <ChartContainer config={chartConfig}>
-        <LineChart
-          data={chartData}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
-          {...svgProps}
-        >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="month"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            tickFormatter={(value) => value.slice(0, 3)}
-          />
-          <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-          <Line 
-            type="natural"
-            dataKey="desktop"
-            stroke="var(--color-desktop)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
-      </ChartContainer>
-    </div>
   )
 }
 
