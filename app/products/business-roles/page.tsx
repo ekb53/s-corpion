@@ -7,6 +7,7 @@
  */
 "use client"
 
+import React from 'react'
 import { useState } from "react"
 import Link from "next/link"
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger, navigationMenuTriggerStyle,NavigationMenuContent } from "@/components/ui/navigation-menu"
@@ -366,7 +367,7 @@ export default function Component() {
   )
 }
 
-function AreachartChart(props) {
+function AreachartChart(props: React.SVGProps<SVGSVGElement>) {
   return (
     <div {...props}>
       <ChartContainer
@@ -416,7 +417,7 @@ function AreachartChart(props) {
 }
 
 
-function CheckIcon(props) {
+function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -436,7 +437,7 @@ function CheckIcon(props) {
 }
 
 
-function CurrencyIcon(props) {
+function CurrencyIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -460,7 +461,7 @@ function CurrencyIcon(props) {
 }
 
 
-function DownloadIcon(props) {
+function DownloadIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -482,7 +483,7 @@ function DownloadIcon(props) {
 }
 
 
-function LinechartChart(props) {
+function LinechartChart(props: React.SVGProps<SVGSVGElement>) {
   return (
     <div {...props}>
       <ChartContainer
@@ -525,7 +526,7 @@ function LinechartChart(props) {
 }
 
 
-function PlusIcon(props) {
+function PlusIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -546,7 +547,7 @@ function PlusIcon(props) {
 }
 
 
-function SettingsIcon(props) {
+function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -567,7 +568,7 @@ function SettingsIcon(props) {
 }
 
 
-function XIcon(props) {
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
