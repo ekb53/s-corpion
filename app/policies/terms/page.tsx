@@ -179,7 +179,7 @@ export default function Home() {
         </p>
         <h2 className="text-3xl font-bold">Disclaimer of Warranties</h2>
         <p className="mt-4 text-muted-foreground">
-          The tool is provided "as is" without any warranties, express or implied.
+          The tool is provided &quot;as is&quot; without any warranties, express or implied.
           We do not guarantee the accuracy of compensation estimates. They should be used as a guide only.
         </p>
         <h2 className="text-3xl font-bold">Limitation of Liability</h2>
