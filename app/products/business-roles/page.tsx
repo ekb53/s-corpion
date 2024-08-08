@@ -348,6 +348,7 @@ export default function Component() {
                           </div>
                           <div>
                             <AreachartChart className="aspect-[16/9]" />
+                            <LinechartChart className="aspect-[16/9]" />
                           </div>
                         </div>
                       ))}
@@ -506,32 +507,36 @@ function DownloadIcon(props: React.SVGProps<SVGSVGElement>) {
   )
 }
 
+interface LinechartChartProps extends React.HTMLAttributes<HTMLDivElement> {
+  svgProps?: React.SVGProps<SVGSVGElement>;
+}
 
-function LinechartChart(props: React.SVGProps<SVGSVGElement>) {
+function LinechartChart({ svgProps, ...divProps }: LinechartChartProps) {
+  const chartData = [
+    { month: "January", desktop: 186 },
+    { month: "February", desktop: 305 },
+    { month: "March", desktop: 237 },
+    { month: "April", desktop: 73 },
+    { month: "May", desktop: 209 },
+    { month: "June", desktop: 214 },
+  ];
+
+  const chartConfig: ChartConfig = {
+    desktop: {
+      label: "Desktop",
+      color: "hsl(var(--chart-1))",
+    },
+  };
   return (
-    <div {...props}>
-      <ChartContainer
-        config={{
-          desktop: {
-            label: "Desktop",
-            color: "hsl(var(--chart-1))",
-          },
-        }}
-      >
+    <div {...divProps}>
+      <ChartContainer config={chartConfig}>
         <LineChart
-          accessibilityLayer
-          data={[
-            { month: "January", desktop: 186 },
-            { month: "February", desktop: 305 },
-            { month: "March", desktop: 237 },
-            { month: "April", desktop: 73 },
-            { month: "May", desktop: 209 },
-            { month: "June", desktop: 214 },
-          ]}
+          data={chartData}
           margin={{
             left: 12,
             right: 12,
           }}
+          {...svgProps}
         >
           <CartesianGrid vertical={false} />
           <XAxis
@@ -541,8 +546,14 @@ function LinechartChart(props: React.SVGProps<SVGSVGElement>) {
             tickMargin={8}
             tickFormatter={(value) => value.slice(0, 3)}
           />
-          <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-          <Line dataKey="desktop" type="natural" stroke="var(--color-desktop)" strokeWidth={2} dot={false} />
+          <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+          <Line 
+            type="natural"
+            dataKey="desktop"
+            stroke="var(--color-desktop)"
+            strokeWidth={2}
+            dot={false}
+          />
         </LineChart>
       </ChartContainer>
     </div>
