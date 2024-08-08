@@ -35,8 +35,8 @@ interface BusinessRole {
 
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedRoles, setSelectedRoles] = useState([])
-  const businessRoles = [
+  const [selectedRoles, setSelectedRoles] = useState<BusinessRole[]>([])
+  const businessRoles: BusinessRole[] = [
     {
       id: 1,
       title: "Accountant",
@@ -103,9 +103,12 @@ export default function Component() {
       jobOutlook: "Faster than average",
     },
   ]
-  const filteredRoles = businessRoles.filter((role) => role.title.toLowerCase().includes(searchTerm.toLowerCase()))
-  const handleRoleSelect = (role) => {
-    if (selectedRoles.includes(role)) {
+  const filteredRoles = businessRoles.filter((role) => 
+    role.title.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+  const handleRoleSelect = (role: BusinessRole) => {
+    if (selectedRoles.some(r => r.id === role.id)) {
       setSelectedRoles(selectedRoles.filter((r) => r.id !== role.id))
     } else {
       setSelectedRoles([...selectedRoles, role])
