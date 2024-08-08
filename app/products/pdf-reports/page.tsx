@@ -41,6 +41,7 @@ import { useRouter } from 'next/navigation'
 import jsPDF from 'jspdf'
 import { fetchBusinessRoles } from '@/lib/bls-api'
 import { useCallback } from 'react';
+import Image from 'next/image';
 
 export default function PDFReportsPage() {
   const [companyName, setCompanyName] = useState('')
@@ -589,7 +590,7 @@ export default function PDFReportsPage() {
                 <CardDescription>Preview and download your income tax return.</CardDescription>
               </CardHeader>
               <CardContent>
-                <img src="/placeholder.svg" alt="Income Tax Return" width={600} height={800} className="rounded-lg" />
+                <Image src="/placeholder.svg" alt="Income Tax Return" width={600} height={800} className="rounded-lg" />
               </CardContent>
               <CardFooter>
                 <Button>Download PDF</Button>
