@@ -158,7 +158,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold">Support</h2>
         <p className="mt-4 text-muted-foreground">
           S-Corpion is a leading provider of tax preparation and compliance services. Our mission is to help
-          businesses and individuals navigate the complex world of taxes with ease and confidence. Welcome to the support page for the AI S-Corp Reasonable Compensation Tool. We're here to help you make the most of our service.
+          businesses and individuals navigate the complex world of taxes with ease and confidence. Welcome to the support page for the AI S-Corp Reasonable Compensation Tool. We&aposre here to help you make the most of our service.
         </p>
         <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
         <p className="mt-4 text-muted-foreground">
@@ -174,7 +174,7 @@ export default function Home() {
         Yes, you can create and save multiple templates for different businesses or scenarios.
         </p>
         <p className="mt-4 text-muted-foreground">
-          Whether you're a small business owner, a tax professional, or an individual taxpayer, Tax Prep has the
+          Whether you&aposre a small business owner, a tax professional, or an individual taxpayer, Tax Prep has the
           tools and resources you need to succeed. Contact us today to learn more about how we can help you with
           your tax-related needs.
         </p>
