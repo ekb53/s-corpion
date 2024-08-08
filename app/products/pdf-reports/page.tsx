@@ -205,7 +205,7 @@ export default function PDFReportsPage() {
     } else {
       setTemplates(data)
     }
-  }
+  }, [user.id, toast])
 
   const generatePDF = () => {
     const doc = new jsPDF()
