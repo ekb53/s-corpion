@@ -13,6 +13,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import Image from 'next/image';
 
 export default function Component() {
   return (
@@ -233,7 +234,7 @@ export default function Component() {
                 <CardTitle>Template Preview</CardTitle>
               </CardHeader>
               <CardContent>
-                <img
+                <Image
                   src="/placeholder.svg"
                   alt="Salary Structure Template"
                   width={600}
