@@ -188,7 +188,7 @@ export default function Home() {
 
             To manage your data, please fill out our contact form on the website.
             Third-Party Services
-            We use Ollama&aposs RESTful API for AI-generated justifications and the BLS API for role options and salary data. These services are subject to their own privacy policies.
+            We use Ollama&apos;s RESTful API for AI-generated justifications and the BLS API for role options and salary data. These services are subject to their own privacy policies.
             Updates to Privacy Policy
             We may update this policy periodically. Check this page for the latest version.
             Contact Us
