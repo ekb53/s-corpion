@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Progress } from "@/components/ui/progress"
 import Image from "next/image";
 import { Input } from "@/components/ui/input"
+import React from 'react';
 
 export default function Home() {
   return (
@@ -239,7 +240,7 @@ export default function Home() {
 }
 
 
-function CurrencyIcon(props) {
+function CurrencyIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -263,7 +264,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function FileIcon(props) {
+  function FileIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -284,7 +285,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function SettingsIcon(props) {
+  function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -305,7 +306,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function ShieldIcon(props) {
+  function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -325,7 +326,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function UsersIcon(props) {
+  function UsersIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -348,7 +349,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function XIcon(props) {
+  function XIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
