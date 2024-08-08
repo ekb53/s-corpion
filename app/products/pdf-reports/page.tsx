@@ -6,6 +6,7 @@
  * @see https://v0.dev/t/ab2CDFqT5Ht
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+import React from 'react'
 import * as React from "react"
 import { NextResponse } from 'next/server'
 import axios from 'axios'
@@ -644,7 +645,7 @@ export default function PDFReportsPage() {
   )
 }
 
-function CurrencyIcon(props) {
+function CurrencyIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -668,7 +669,7 @@ function CurrencyIcon(props) {
 }
 
 
-function FileIcon(props) {
+function FileIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -689,7 +690,7 @@ function FileIcon(props) {
 }
 
 
-function SettingsIcon(props) {
+function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -710,7 +711,7 @@ function SettingsIcon(props) {
 }
 
 
-function XIcon(props) {
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
