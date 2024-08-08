@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { CartesianGrid, XAxis, Line, LineChart, Area, AreaChart } from "recharts"
-import { ChartTooltipContent, ChartTooltip, ChartContainer, type ChartConfig } from "@/components/ui/chart"
+import { type ChartConfig, ChartTooltipContent, ChartTooltip, ChartContainer, ChartConfig } from "@/components/ui/chart"
 
 // Define an interface for the business role
 interface BusinessRole {
@@ -133,7 +133,7 @@ const chartConfig: ChartConfig = {
     label: "Desktop",
     color: "hsl(var(--chart-1))",
   },
-};
+} satisfies ChartConfig
   
   return (
     <div className="flex min-h-screen flex-col bg-background">
