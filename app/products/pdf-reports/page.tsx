@@ -6,7 +6,6 @@
  * @see https://v0.dev/t/ab2CDFqT5Ht
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import React from 'react'
 import * as React from "react"
 import { NextResponse } from 'next/server'
 import axios from 'axios'
