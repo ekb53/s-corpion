@@ -33,6 +33,10 @@ interface BusinessRole {
   jobOutlook: string;
 }
 
+interface AreachartChartProps {
+  className?: string;
+}
+
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedRoles, setSelectedRoles] = useState<BusinessRole[]>([])
@@ -114,10 +118,6 @@ export default function Component() {
       setSelectedRoles([...selectedRoles, role])
     }
   }
-
-  interface AreachartChartProps {
-  className?: string;
-}
 
 const chartData = [
   { month: "January", desktop: 186 },
