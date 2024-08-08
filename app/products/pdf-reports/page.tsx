@@ -40,6 +40,7 @@ import {
 import { useRouter } from 'next/navigation'
 import jsPDF from 'jspdf'
 import { fetchBusinessRoles } from '@/lib/bls-api'
+import { useCallback } from 'react';
 
 export default function PDFReportsPage() {
   const [companyName, setCompanyName] = useState('')
@@ -185,12 +186,10 @@ export default function PDFReportsPage() {
   }
   
   useEffect(() => {
-    if (user) {
-      fetchTemplates()
-    }
-  }, [user])
+  fetchTemplates();
+}, [fetchTemplates]);
 
-  const fetchTemplates = async () => {
+  const fetchTemplates = useCallback(async () => {
     const { data, error } = await supabase
       .from('report_templates')
       .select('*')
