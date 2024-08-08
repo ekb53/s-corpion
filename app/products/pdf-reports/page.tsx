@@ -41,7 +41,7 @@ import { useRouter } from 'next/navigation'
 import jsPDF from 'jspdf'
 import { fetchBusinessRoles } from '@/lib/bls-api'
 
-export default function page() {
+export default function PDFReportsPage() {
   const [companyName, setCompanyName] = useState('')
   const [revenue, setRevenue] = useState(0)
   const [roleOptions, setRoleOptions] = useState<{ role: string; salary: number }[]>([])
