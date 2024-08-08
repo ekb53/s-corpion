@@ -186,7 +186,7 @@ export default function Home() {
                 tax regulations and providing our clients with the most accurate and reliable information.
               </p>
               <p className="mt-4 text-muted-foreground">
-                Whether you're a small business owner, a tax professional, or an individual taxpayer, S-Corpion has the
+                Whether you are a small business owner, a tax professional, or an individual taxpayer, S-Corpion has the
                 tools and resources you need to succeed. Contact us today to learn more about how we can help you with
                 your tax-related needs.
               </p>
