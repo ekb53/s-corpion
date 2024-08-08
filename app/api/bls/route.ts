@@ -4,6 +4,31 @@ import axios from 'axios';
 const BLS_API_URL = 'https://api.bls.gov/publicAPI/v2/timeseries/data/';
 const BLS_API_KEY = process.env.BLS_API_KEY;
 
+interface BLSDataItem {
+  periodName: string;
+  value: string;
+}
+
+interface BLSSeries {
+  catalog: {
+    occupation: string;
+  };
+  data: BLSDataItem[];
+}
+
+interface BLSResponse {
+  status: string;
+  Results: {
+    series: BLSSeries[];
+  };
+  message?: string;
+}
+
+interface Occupation {
+  role: string;
+  salary: number;
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const searchTerm = searchParams.get('search') || '';
@@ -18,7 +43,7 @@ export async function GET(request: Request) {
       'OEUN000000000000019000000', // Life, Physical, and Social Science Occupations
     ];
 
-    const response = await axios.post(BLS_API_URL, {
+    const response = await axios.post<BLSResponse>(BLS_API_URL, {
       seriesid: seriesIds,
       startyear: '2022',
       endyear: '2023',
@@ -37,18 +62,18 @@ export async function GET(request: Request) {
       throw new Error('BLS API request failed: ' + response.data.message);
     }
 
-    const occupations = response.data.Results.series
-      .filter((series: any) => series.data.length > 0)
-      .map((series: any) => {
-        const latestData = series.data.find((item: any) => item.periodName === 'Annual');
+    const occupations: Occupation[] = response.data.Results.series
+      .filter((series: BLSSeries) => series.data.length > 0)
+      .map((series: BLSSeries) => {
+        const latestData = series.data.find((item: BLSDataItem) => item.periodName === 'Annual');
         return {
           role: series.catalog.occupation,
-          salary: Math.round(parseFloat(latestData.value) * 1000) // Convert to average salary
+          salary: Math.round(parseFloat(latestData?.value || '0') * 1000) // Convert to average salary
         };
       });
 
     // Filter occupations based on the search term
-    const filteredOccupations = occupations.filter((occupation) =>
+    const filteredOccupations = occupations.filter((occupation: Occupation) =>
       occupation.role.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
