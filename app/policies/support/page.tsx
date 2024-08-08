@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from "next/link"
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger, navigationMenuTriggerStyle, NavigationMenuContent } from "@/components/ui/navigation-menu"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
@@ -222,7 +223,7 @@ export default function Home() {
 }
 
 
-function CurrencyIcon(props) {
+function CurrencyIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -246,7 +247,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function FileIcon(props) {
+  function FileIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -267,7 +268,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function SettingsIcon(props) {
+  function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -288,7 +289,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function ShieldIcon(props) {
+  function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -308,7 +309,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function UsersIcon(props) {
+  function UsersIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
@@ -331,7 +332,7 @@ function CurrencyIcon(props) {
   }
   
   
-  function XIcon(props) {
+  function XIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
