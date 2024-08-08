@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { CartesianGrid, XAxis, Line, LineChart, Area, AreaChart } from "recharts"
-import { ChartTooltipContent, ChartTooltip, ChartContainer } from "@/components/ui/chart"
+import { ChartTooltipContent, ChartTooltip, ChartContainer, type ChartConfig } from "@/components/ui/chart"
 
 // Define an interface for the business role
 interface BusinessRole {
@@ -114,6 +114,27 @@ export default function Component() {
       setSelectedRoles([...selectedRoles, role])
     }
   }
+
+  interface AreachartChartProps {
+  className?: string;
+}
+
+const chartData = [
+  { month: "January", desktop: 186 },
+  { month: "February", desktop: 305 },
+  { month: "March", desktop: 237 },
+  { month: "April", desktop: 73 },
+  { month: "May", desktop: 209 },
+  { month: "June", desktop: 214 },
+];
+
+const chartConfig: ChartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+};
+  
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="sticky top-0 z-40 w-full border-b bg-background">
@@ -389,55 +410,36 @@ export default function Component() {
   )
 }
 
-function AreachartChart(props: React.SVGProps<SVGSVGElement>) {
+function AreachartChart({ className }: AreachartChartProps) {
   return (
-    <div {...props}>
-      <ChartContainer
-        config={{
-          desktop: {
-            label: "Desktop",
-            color: "hsl(var(--chart-1))",
-          },
+    <ChartContainer config={chartConfig} className={`min-h-[300px] ${className}`}>
+      <AreaChart
+        data={chartData}
+        margin={{
+          left: 12,
+          right: 12,
         }}
-        className="min-h-[300px]"
       >
-        <AreaChart
-          accessibilityLayer
-          data={[
-            { month: "January", desktop: 186 },
-            { month: "February", desktop: 305 },
-            { month: "March", desktop: 237 },
-            { month: "April", desktop: 73 },
-            { month: "May", desktop: 209 },
-            { month: "June", desktop: 214 },
-          ]}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
-        >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="month"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            tickFormatter={(value) => value.slice(0, 3)}
-          />
-          <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-          <Area
-            dataKey="desktop"
-            type="natural"
-            fill="var(--color-desktop)"
-            fillOpacity={0.4}
-            stroke="var(--color-desktop)"
-          />
-        </AreaChart>
-      </ChartContainer>
-    </div>
-  )
+        <CartesianGrid vertical={false} />
+        <XAxis
+          dataKey="month"
+          tickLine={false}
+          axisLine={false}
+          tickMargin={8}
+          tickFormatter={(value) => value.slice(0, 3)}
+        />
+        <ChartTooltip content={<ChartTooltipContent />} />
+        <Area
+          type="natural"
+          dataKey="desktop"
+          fill="var(--color-desktop)"
+          fillOpacity={0.4}
+          stroke="var(--color-desktop)"
+        />
+      </AreaChart>
+    </ChartContainer>
+  );
 }
-
 
 function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
