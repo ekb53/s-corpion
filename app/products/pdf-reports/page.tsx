@@ -308,12 +308,12 @@ export default function PDFReportsPage() {
     }
   }
 
-  const loadTemplate = (template) => {
-    setCompanyName(template.company_name)
-    setRevenue(template.revenue)
-    setIncludeChart(template.include_chart)
-    setBusinessRoles(template.business_roles || [{ role: '', hours: 0 }])
-  }
+  const loadTemplate = (template: Template) => {
+  setCompanyName(template.company_name);
+  setRevenue(template.revenue);
+  setIncludeChart(template.include_chart);
+  setBusinessRoles(template.business_roles || [{ role: '', hours: 0, salary: 0 }]);
+};
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
