@@ -103,6 +103,8 @@ export default function PDFReportsPage() {
       fetchOptions()
     }, [searchTerm])
 
+    
+
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
@@ -183,13 +185,13 @@ export default function PDFReportsPage() {
 };
 
   const addBusinessRole = () => {
-    setBusinessRoles([...businessRoles, { role: '', hours: 0 }])
-  }
+  setBusinessRoles([...businessRoles, { role: '', hours: 0, salary: 0 }]);
+};
 
-  const removeBusinessRole = (index) => {
-    const updatedRoles = businessRoles.filter((_, i) => i !== index)
-    setBusinessRoles(updatedRoles)
-  }
+  const removeBusinessRole = (index: number) => {
+  const updatedRoles = businessRoles.filter((_, i) => i !== index);
+  setBusinessRoles(updatedRoles);
+};
   
   useEffect(() => {
   fetchTemplates();
