@@ -247,7 +247,7 @@ export default function Component() {
   )
 }
 
-function CurrencyIcon(props) {
+function CurrencyIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -271,7 +271,7 @@ function CurrencyIcon(props) {
 }
 
 
-function SettingsIcon(props) {
+function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -292,7 +292,7 @@ function SettingsIcon(props) {
 }
 
 
-function XIcon(props) {
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
