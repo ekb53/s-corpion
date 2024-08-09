@@ -6,6 +6,7 @@
  * @see https://v0.dev/t/zVr1Yx272XW
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+import React from 'react'
 import { useState } from 'react'
 import Link from "next/link"
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger, navigationMenuTriggerStyle, NavigationMenuContent } from "@/components/ui/navigation-menu"
@@ -283,7 +284,7 @@ export default function Component() {
 }
 
 
-function CurrencyIcon(props) {
+function CurrencyIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -307,7 +308,7 @@ function CurrencyIcon(props) {
 }
 
 
-function SettingsIcon(props) {
+function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -328,7 +329,7 @@ function SettingsIcon(props) {
 }
 
 
-function XIcon(props) {
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
