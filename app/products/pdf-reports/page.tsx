@@ -47,7 +47,7 @@ export default function PDFReportsPage() {
   const [companyName, setCompanyName] = useState('')
   const [revenue, setRevenue] = useState(0)
   const [roleOptions, setRoleOptions] = useState<{ role: string; salary: number }[]>([])
-  const [businessRoles, setBusinessRoles] = useState([{ role: '', hours: 0, salary: 0 }])
+  const [businessRoles, setBusinessRoles] = useState<BusinessRole[]>([{ role: '', hours: 0, salary: 0 }])
   const [includeChart, setIncludeChart] = useState(false)
   const [templates, setTemplates] = useState([])
   const { toast } = useToast()
@@ -58,6 +58,11 @@ export default function PDFReportsPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false);
 
+  interface BusinessRole {
+  role: string;
+  hours: number;
+  salary: number;
+}
 
   interface ComboboxDemoProps {
     index: number;
@@ -171,11 +176,11 @@ export default function PDFReportsPage() {
     setBusinessRoles(updatedRoles)
   }
 
-  const handleHoursChange = (index, value) => {
-    const updatedRoles = [...businessRoles]
-    updatedRoles[index].hours = value[0]
-    setBusinessRoles(updatedRoles)
-  }
+  const handleHoursChange = (index: number, value: number[]) => {
+  const updatedRoles = [...businessRoles];
+  updatedRoles[index] = { ...updatedRoles[index], hours: value[0] };
+  setBusinessRoles(updatedRoles);
+};
 
   const addBusinessRole = () => {
     setBusinessRoles([...businessRoles, { role: '', hours: 0 }])
