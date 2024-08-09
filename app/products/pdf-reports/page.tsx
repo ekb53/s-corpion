@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/popover"
 import { useRouter } from 'next/navigation'
 import jsPDF from 'jspdf'
-import { fetchBusinessRoles, BusinessRole } from '@/lib/bls-api';
+import { fetchBusinessRoles } from '@/lib/bls-api';
 import { useCallback } from 'react';
 import Image from 'next/image';
 
