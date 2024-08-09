@@ -1,18 +1,17 @@
 import axios from 'axios';
 import { supabase } from './supabase';
 
-export interface BusinessRole {
+interface BusinessRoleData {
   role: string;
-  description: string;
   salary: number;
-  hours?: number; // Make hours optional
+  description?: string;
 }
 
-export async function fetchBusinessRoles(searchTerm: string = ''): Promise<BusinessRole[]> {
+export async function fetchBusinessRoles(searchTerm: string = ''): Promise<BusinessRoleData[]> {
   try {
     const { data, error } = await supabase
       .from('business_roles')
-      .select('*')
+      .select('role, salary, description')
       .ilike('role', `%${searchTerm}%`)
       .limit(10);
 
@@ -20,7 +19,7 @@ export async function fetchBusinessRoles(searchTerm: string = ''): Promise<Busin
       throw error;
     }
 
-    return data as BusinessRole[];
+    return data as BusinessRoleData[];
   } catch (error) {
     console.error('Error fetching business roles:', error);
     return [];
