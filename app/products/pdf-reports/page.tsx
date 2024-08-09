@@ -49,7 +49,7 @@ export default function PDFReportsPage() {
   const [roleOptions, setRoleOptions] = useState<{ role: string; salary: number }[]>([])
   const [businessRoles, setBusinessRoles] = useState<BusinessRole[]>([{ role: '', hours: 0, salary: 0 }])
   const [includeChart, setIncludeChart] = useState(false)
-  const [templates, setTemplates] = useState([])
+  const [templates, setTemplates] = useState<Template[]>([]);
   const { toast } = useToast()
   const { user } = useAuth() as { user: User | null };
   const [isLoginPromptOpen, setIsLoginPromptOpen] = useState(false)
@@ -67,6 +67,15 @@ export default function PDFReportsPage() {
   role: string;
   hours: number;
   salary: number;
+}
+
+  interface Template {
+  id: number;
+  user_id: string;
+  company_name: string;
+  revenue: number;
+  include_chart: boolean;
+  business_roles: BusinessRole[];
 }
 
   interface ComboboxDemoProps {
@@ -216,7 +225,7 @@ export default function PDFReportsPage() {
       variant: "destructive",
     });
   } else {
-    setTemplates(data || []);
+    setTemplates(data as Template[] || []);
   }
 }, [user, toast, supabase]);
 
