@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![SCORPION-FAV-WHITE](https://github.com/user-attachments/assets/8ce33c13-40b9-4d44-ae0a-06063390c7d8)
 
-## Getting Started
 
-First, run the development server:
+<h1>S-Corpion - Tax SaaS for S-Corp Owners</h1>
+It's time to put TurboTax, Quickbooks, and Xero into the Recycle Bin. And then, empty it.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Welcome to S-Corpion🦂
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+S-Corp. Scorp. Scorpion! Get it?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Currently launched on Vercel at https://s-corpion.vercel.app
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Have an interest in the product? Sign up at https://reasonablesalary.com
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Stack:
+Next.JS - Typescript
+Supabase
+ShadCN UI - v0.dev
+Bureau of Labor Statistics API
