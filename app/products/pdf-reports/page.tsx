@@ -89,85 +89,90 @@ export default function PDFReportsPage() {
   const ComboboxDemo: React.FC<ComboboxDemoProps> = ({ index, value, onChange, roleOptions }) => {
     const [open, setOpen] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
-    const [localRoleOptions, setLocalRoleOptions] = useState<{ role: string; salary: number }[]>([])
-    const [isLoading, setIsLoading] = useState(false)
+    const [localRoleOptions, setLocalRoleOptions] = useState<BusinessRole[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+    
 
     useEffect(() => {
-      const fetchOptions = async () => {
-        if (searchTerm.length >= 2) {
-          setIsLoading(true)
-          try {
-            const roles = await fetchBusinessRoles(searchTerm)
-            setLocalRoleOptions(roles)
-          } catch (error) {
-            console.error('Error fetching roles:', error)
-            toast({
-              title: "Error",
-              description: "Failed to fetch business roles. Please try again.",
-              variant: "destructive",
-            })
-          } finally {
-            setIsLoading(false)
-          }
-        } else {
-          setLocalRoleOptions([])
+    const fetchOptions = async () => {
+      if (searchTerm.length >= 2) {
+        setIsLoading(true);
+        try {
+          const roles = await fetchBusinessRoles(searchTerm);
+          setLocalRoleOptions(roles);
+        } catch (error) {
+          console.error('Error fetching roles:', error);
+          toast({
+            title: "Error",
+            description: "Failed to fetch business roles. Please try again.",
+            variant: "destructive",
+          });
+        } finally {
+          setIsLoading(false);
         }
+      } else {
+        setLocalRoleOptions([]);
       }
+    };
 
-      fetchOptions()
-    }, [searchTerm])
+    fetchOptions();
+  }, [searchTerm]);
 
     
 
     return (
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            className="w-[300px] justify-between"
-          >
-            {value || "Select business role..."}
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[300px] p-0">
-          <Command>
-            <CommandInput 
-              placeholder="Search business role..." 
-              onValueChange={setSearchTerm}
-            />
-            {isLoading ? (
-              <div className="p-2 text-center">Loading...</div>
-            ) : (
-              <>
-                <CommandEmpty>No role found.</CommandEmpty>
-                <CommandGroup>
-                  {localRoleOptions.map((role) => (
-                    <CommandItem
-                      key={role.role}
-                      value={role.role}
-                      onSelect={() => {
-                        onChange(index, role.role, role.salary)
-                        setOpen(false)
-                      }}
-                    >
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          value === role.role ? "opacity-100" : "opacity-0"
-                        )}
-                      />
-                      {role.role} (${role.salary.toLocaleString()}/year)
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </>
-            )}
-          </Command>
-        </PopoverContent>
-      </Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className="w-[300px] justify-between"
+        >
+          {value || "Select business role..."}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[300px] p-0">
+        <Command>
+          <CommandInput 
+            placeholder="Search business role..." 
+            onValueChange={setSearchTerm}
+          />
+          {isLoading ? (
+            <div className="p-2 text-center">Loading...</div>
+          ) : (
+            <>
+              <CommandEmpty>No role found.</CommandEmpty>
+              <CommandGroup>
+                {localRoleOptions.map((role) => (
+                  <CommandItem
+                    key={role.role}
+                    value={role.role}
+                    onSelect={() => {
+                      onChange(index, role.role, role.salary);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        value === role.role ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                    <div>
+                      <div>{role.role}</div>
+                      <div className="text-sm text-gray-500">{role.description}</div>
+                      <div className="text-sm font-semibold">${role.salary.toLocaleString()}/year</div>
+                    </div>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </>
+          )}
+        </Command>
+      </PopoverContent>
+    </Popover>
     )
   }
   
