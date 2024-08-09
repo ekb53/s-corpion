@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/popover"
 import { useRouter } from 'next/navigation'
 import jsPDF from 'jspdf'
-import { fetchBusinessRoles } from '@/lib/bls-api'
+import { fetchBusinessRoles, BusinessRole } from '@/lib/bls-api';
 import { useCallback } from 'react';
 import Image from 'next/image';
 
@@ -47,7 +47,7 @@ export default function PDFReportsPage() {
   const [companyName, setCompanyName] = useState('')
   const [revenue, setRevenue] = useState(0)
   const [roleOptions, setRoleOptions] = useState<{ role: string; salary: number }[]>([])
-  const [businessRoles, setBusinessRoles] = useState<BusinessRole[]>([{ role: '', hours: 0, salary: 0 }])
+  const [businessRoles, setBusinessRoles] = useState<BusinessRole[]>([{ role: '', hours: 0, salary: 0, description: '' }]);
   const [includeChart, setIncludeChart] = useState(false)
   const [templates, setTemplates] = useState<Template[]>([]);
   const { toast } = useToast()
@@ -87,36 +87,35 @@ export default function PDFReportsPage() {
 
 
   const ComboboxDemo: React.FC<ComboboxDemoProps> = ({ index, value, onChange, roleOptions }) => {
-    const [open, setOpen] = useState(false)
-    const [searchTerm, setSearchTerm] = useState('')
+    const [open, setOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     const [localRoleOptions, setLocalRoleOptions] = useState<BusinessRole[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-    
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-    const fetchOptions = async () => {
-      if (searchTerm.length >= 2) {
-        setIsLoading(true);
-        try {
-          const roles = await fetchBusinessRoles(searchTerm);
-          setLocalRoleOptions(roles);
-        } catch (error) {
-          console.error('Error fetching roles:', error);
-          toast({
-            title: "Error",
-            description: "Failed to fetch business roles. Please try again.",
-            variant: "destructive",
-          });
-        } finally {
-          setIsLoading(false);
+      const fetchOptions = async () => {
+        if (searchTerm.length >= 2) {
+          setIsLoading(true);
+          try {
+            const roles = await fetchBusinessRoles(searchTerm);
+            setLocalRoleOptions(roles);
+          } catch (error) {
+            console.error('Error fetching roles:', error);
+            toast({
+              title: "Error",
+              description: "Failed to fetch business roles. Please try again.",
+              variant: "destructive",
+            });
+          } finally {
+            setIsLoading(false);
+          }
+        } else {
+          setLocalRoleOptions([]);
         }
-      } else {
-        setLocalRoleOptions([]);
-      }
-    };
+      };
 
-    fetchOptions();
-  }, [searchTerm]);
+      fetchOptions();
+    }, [searchTerm]);
 
     
 
@@ -191,11 +190,11 @@ export default function PDFReportsPage() {
     }
   }
 
-  const handleRoleChange = (index: number, role: string, salary: number) => {
-    const updatedRoles = [...businessRoles]
-    updatedRoles[index] = { ...updatedRoles[index], role, salary }
-    setBusinessRoles(updatedRoles)
-  }
+  const handleRoleChange = (index: number, role: string, salary: number, description: string) => {
+    const updatedRoles = [...businessRoles];
+    updatedRoles[index] = { ...updatedRoles[index], role, salary, description, hours: updatedRoles[index].hours || 0 };
+    setBusinessRoles(updatedRoles);
+  };
 
   const handleHoursChange = (index: number, value: number[]) => {
   const updatedRoles = [...businessRoles];
