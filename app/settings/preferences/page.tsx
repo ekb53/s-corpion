@@ -7,6 +7,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import * as React from "react"
+import { useState } from 'react'
 import Link from "next/link"
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger, navigationMenuTriggerStyle, NavigationMenuContent } from "@/components/ui/navigation-menu"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
@@ -22,6 +23,13 @@ import { Moon, Sun } from "lucide-react"
 
 export default function Component() {
   const { setTheme } = useTheme()
+  const [language, setLanguage] = useState('en');
+  
+  const handleLanguageChange = (value: string) => {
+    setLanguage(value);
+    // Here you would typically implement actual language change logic
+    console.log(`Language changed to: ${value}`);
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -210,8 +218,8 @@ export default function Component() {
                   </div>
                   <div>
                     <Label htmlFor="language">Language</Label>
-                    <Select id="language" className="mt-2">
-                      <SelectTrigger className="w-full">
+                    <Select value={language} onValueChange={handleLanguageChange}>
+                      <SelectTrigger className="w-full mt-2">
                         <SelectValue placeholder="Select language" />
                       </SelectTrigger>
                       <SelectContent>
