@@ -194,25 +194,32 @@ export default function PDFReportsPage() {
 };
 
   const fetchTemplates = useCallback(async () => {
-    const { data, error } = await supabase
-      .from('report_templates')
-      .select('*')
-      .eq('user_id', user.id)
+  if (!user) {
+    console.log('User not logged in');
+    return;
+  }
 
-    if (error) {
-      toast({
-        title: "Error",
-        description: "Failed to fetch templates",
-        variant: "destructive",
-      })
-    } else {
-      setTemplates(data)
-    }
-  }, [user.id, toast])
+  const { data, error } = await supabase
+    .from('report_templates')
+    .select('*')
+    .eq('user_id', user.id);
+
+  if (error) {
+    toast({
+      title: "Error",
+      description: "Failed to fetch templates",
+      variant: "destructive",
+    });
+  } else {
+    setTemplates(data);
+  }
+}, [user, toast]);
 
   useEffect(() => {
-  fetchTemplates();
-}, [fetchTemplates]);
+  if (user) {
+    fetchTemplates();
+  }
+}, [fetchTemplates, user]);
 
   const generatePDF = () => {
     const doc = new jsPDF()
@@ -245,30 +252,39 @@ export default function PDFReportsPage() {
   }
 
   const saveTemplate = async () => {
-    const { data, error } = await supabase
-      .from('report_templates')
-      .insert({
-        user_id: user.id,
-        company_name: companyName,
-        revenue: revenue,
-        include_chart: includeChart,
-        business_roles: businessRoles
-      })
-
-    if (error) {
-      toast({
-        title: "Error",
-        description: "Failed to save template",
-        variant: "destructive",
-      })
-    } else {
-      toast({
-        title: "Success",
-        description: "Template saved successfully",
-      })
-      fetchTemplates()
-    }
+  if (!user) {
+    toast({
+      title: "Error",
+      description: "You must be logged in to save templates",
+      variant: "destructive",
+    });
+    return;
   }
+
+  const { data, error } = await supabase
+    .from('report_templates')
+    .insert({
+      user_id: user.id,
+      company_name: companyName,
+      revenue: revenue,
+      include_chart: includeChart,
+      business_roles: businessRoles
+    });
+
+  if (error) {
+    toast({
+      title: "Error",
+      description: "Failed to save template",
+      variant: "destructive",
+    });
+  } else {
+    toast({
+      title: "Success",
+      description: "Template saved successfully",
+    });
+    fetchTemplates();
+  }
+};
 
   const handleSaveTemplate = () => {
     if (user) {
