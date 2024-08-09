@@ -51,13 +51,18 @@ export default function PDFReportsPage() {
   const [includeChart, setIncludeChart] = useState(false)
   const [templates, setTemplates] = useState([])
   const { toast } = useToast()
-  const { user } = useAuth()
+  const { user } = useAuth() as { user: User | null };
   const [isLoginPromptOpen, setIsLoginPromptOpen] = useState(false)
   const [open, setOpen] = useState(false)
   const [roleValue, setRoleValue] = useState("")
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false);
 
+  interface User {
+  id: string;
+  // Add other properties as needed
+}
+  
   interface BusinessRole {
   role: string;
   hours: number;
@@ -211,9 +216,9 @@ export default function PDFReportsPage() {
       variant: "destructive",
     });
   } else {
-    setTemplates(data);
+    setTemplates(data || []);
   }
-}, [user, toast]);
+}, [user, toast, supabase]);
 
   useEffect(() => {
   if (user) {
