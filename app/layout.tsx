@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider"
 import './globals.css'
+import { Analytics } from "@vercel/analytics/react"
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -38,7 +39,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
           fontBody.variable
         )}
       >
-      
+      <Analytics />
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
