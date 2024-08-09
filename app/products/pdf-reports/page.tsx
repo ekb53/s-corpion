@@ -192,10 +192,6 @@ export default function PDFReportsPage() {
   const updatedRoles = businessRoles.filter((_, i) => i !== index);
   setBusinessRoles(updatedRoles);
 };
-  
-  useEffect(() => {
-  fetchTemplates();
-}, [fetchTemplates]);
 
   const fetchTemplates = useCallback(async () => {
     const { data, error } = await supabase
@@ -213,6 +209,10 @@ export default function PDFReportsPage() {
       setTemplates(data)
     }
   }, [user.id, toast])
+
+  useEffect(() => {
+  fetchTemplates();
+}, [fetchTemplates]);
 
   const generatePDF = () => {
     const doc = new jsPDF()
