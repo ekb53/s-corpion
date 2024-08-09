@@ -5,6 +5,7 @@ export interface BusinessRole {
   role: string;
   description: string;
   salary: number;
+  hours?: number; // Make hours optional
 }
 
 export async function fetchBusinessRoles(searchTerm: string = ''): Promise<BusinessRole[]> {
