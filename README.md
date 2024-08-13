@@ -1,4 +1,4 @@
-![SCORPION-FAV-WHITE](https://github.com/user-attachments/assets/8ce33c13-40b9-4d44-ae0a-06063390c7d8)
+![a-scorpion-surrounded-by-tax-documents-and-files-i-8yh5C4oGS-asi65H-oju4w-eVsjRgu7QVmpfclfEgePmw](https://github.com/user-attachments/assets/422b3f08-088a-4f1e-bd4c-1c710930fccb)
 
 
 <h1>S-Corpion - Tax SaaS for S-Corp Owners</h1>
