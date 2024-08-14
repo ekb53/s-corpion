@@ -4,6 +4,15 @@
 <h1>S-Corpion - Tax SaaS for S-Corp Owners</h1>
 It's time to put TurboTax, Quickbooks, and Xero into the Recycle Bin. And then, empty it.
 
+I'm building a web app hyper-focused on small business owners. 
+
+Check out the initial features:
+- Custom PDF Report Generation ~ Craft audit-proof salary estimation documents using BLS data and AI
+- Create & Save Compensation Templates ~ Archive business reports, allowing for multiple documents year-round
+- Manage Business Roles within your company ~ See up-to-date wage and occupation data for all of your roles you assume
+- Tax Compliance Tracking ~ Visualize how your business stands with the IRS
+- ...and much more
+
 Welcome to S-Corpion🦂
 
 S-Corp. Scorp. Scorpion! Get it?
