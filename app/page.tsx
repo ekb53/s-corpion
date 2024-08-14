@@ -17,9 +17,20 @@ import Image from "next/image";
 import { useRouter } from 'next/router'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { ChevronsUpDown } from "lucide-react"
+import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
 
 export default function Home() {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+
+  const { data: todos } = await supabase.from('todos').select()
   return (
+    <ul>
+      {todos?.map((todo) => (
+        <li>{todo}</li>
+      ))}
+    </ul>
 <div className="flex min-h-screen flex-col bg-background">
 {/*       <header className="sticky top-0 z-40 w-full border-b bg-background">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
