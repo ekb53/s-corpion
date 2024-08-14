@@ -200,8 +200,10 @@ export default function Home() {
           </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 font-medium hover:text-primary">
+              <Button variant="ghost">
               Resources
               <ChevronDownIcon className="h-4 w-4" />
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuItem>
@@ -287,19 +289,19 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <div className="grid gap-2">
-                  <Button variant="outline">
+                  <Button variant="outline" asChild>
                     <FileIcon className="mr-2 h-4 w-4" />
                     <Link href="products/pdf-reports">
                     Income Tax Return
                     </Link>
                   </Button>
-                  <Button variant="outline">
+                  <Button variant="outline" asChild>
                     <FileIcon className="mr-2 h-4 w-4" />
                     <Link href="products/pdf-reports">
                     Payroll Tax Report
                     </Link>
                   </Button>
-                  <Button variant="outline">
+                  <Button variant="outline" asChild>
                     <FileIcon className="mr-2 h-4 w-4" />
                     <Link href="products/pdf-reports">
                     Sales Tax Report
