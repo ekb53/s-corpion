@@ -289,9 +289,9 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <div className="grid gap-2">
-                  <Button>
+                  <Button variant="outline">
                     <FileIcon className="mr-2 h-4 w-4" />
-                    <Link href="products/pdf-reports" className={buttonVariants({ variant: "outline" })}>
+                    <Link href="products/pdf-reports">
                     Income Tax Return
                     </Link>
                   </Button>
