@@ -16,146 +16,129 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 export default function Component() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <header className="sticky top-0 z-40 w-full border-b bg-background">
-        <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-          <nav className="flex items-center gap-6 text-sm font-medium">
-            <Link href="#" className="flex items-center gap-2 text-lg font-semibold" prefetch={false}>
-              <CurrencyIcon className="h-6 w-6" />
-              <span className="sr-only">Tax Prep</span>
-            </Link>
-            <NavigationMenu>
-              <NavigationMenuList>
-              <NavigationMenuItem>
-                  <Link href="/" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                      Dashboard
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="group hover:text-primary">Products</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[200px] p-2">
-                      <NavigationMenuLink
-                        href="/products/pdf-reports"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        PDF Reports
-                      </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/products/compensation-templates"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        Compensation Templates
-                      </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/products/business-roles"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        Business Roles
-                      </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/products/tax-compliance"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        Tax Compliance
-                      </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="group hover:text-primary">Resources</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[200px] p-2">
-                      <NavigationMenuLink
-                        href="/resources/upcoming-tax-deadlines"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        Upcoming Tax Deadlines
-                      </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/resources/tax-preparation-status"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        Tax Preparation Status
-                      </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/resources/irs-updates"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        IRS Updates
-                      </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/resources/state-tax-changes"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        State Tax Changes
-                      </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/resources/audit-preparation"
-                        className="group rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
-                      >
-                        Audit Preparation
-                      </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="/about" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                      About
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="/contact" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                      Contact
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Link href="/settings/login" className="text-sm font-medium" prefetch={false}>
-              Login
-            </Link>
-            <Link
-              href="/settings/signup"
-              className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary"
-              prefetch={false}
-            >
-              Sign up
-            </Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <SettingsIcon className="h-5 w-5" />
-                  <span className="sr-only">Settings</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>
-                  <Link href="/settings/profile" className="group hover:text-primary">
-                    Profile
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/settings/preferences" className="group hover:text-primary">
-                    Preferences
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/settings/logout" className="group hover:text-primary">
-                    Logout
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </div>
-      </header>
+      <header className="flex items-center justify-between bg-background px-4 py-3 shadow-sm sm:px-6 lg:px-8">
+      <div className="flex items-center gap-4">
+        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+{/*           <SnailIcon className="h-6 w-6" /> */}
+          <img src="/scorpion.svg" alt="S-Corpion Logo" width="25" height="25" />
+          <span className="font-bold">S-corpion</span>
+        </Link>
+        <nav className="hidden gap-4 md:flex">
+          <Button variant="ghost">
+          <Link href="/" prefetch={false}>
+            Dashboard
+          </Link>
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 font-medium hover:text-primary">
+              <Button variant="ghost">
+              Products
+              <ChevronDownIcon className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem>
+                <Link href="/products/pdf-reports" prefetch={false}>
+                  PDF Reports
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/products/compensation-templates" prefetch={false}>
+                  Compensation Templates
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/products/business-roles" prefetch={false}>
+                  Business Roles
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/products/tax-compliance" prefetch={false}>
+                  Tax Compliance
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 font-medium hover:text-primary">
+              <Button variant="ghost">
+              Resources
+              <ChevronDownIcon className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem>
+                <Link href="/resources/upcoming-tax-deadlines" prefetch={false}>
+                  Upcoming Tax Deadlines
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/resources/tax-preparation-status" prefetch={false}>
+                  Tax Preparation Status
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/resources/irs-updates" prefetch={false}>
+                  IRS Updates
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/resources/state-tax-changes" prefetch={false}>
+                  State Tax Changes
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/resources/audit-preparation" prefetch={false}>
+                  Audit Preparation
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Button variant="ghost">
+          <Link href="/about" className="font-medium hover:text-primary" prefetch={false}>
+            About
+          </Link>
+          </Button>
+          <Button variant="ghost">
+          <Link href="/contact" className="font-medium hover:text-primary" prefetch={false}>
+            Contact
+          </Link>
+          </Button>
+        </nav>
+      </div>
+      <div className="flex items-center gap-4">
+        <Link href="/settings/profile" prefetch={false}>
+          <Button variant="outline" className="hidden sm:inline-flex">
+            Login
+          </Button>
+        </Link>
+        <Link href="/settings/signup" prefetch={false}>
+          <Button className="hidden sm:inline-flex">
+            Sign Up
+          </Button>
+        </Link>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <SettingsIcon className="h-5 w-5" />
+              <span className="sr-only">Settings</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>
+              <Link href="/settings/preferences" className="w-full">
+                Settings
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/settings/logout" className="w-full">
+                Logout
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </header>
       <main className="container mx-auto px-4 md:px-0">
         <section className="container py-12 md:py-16">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
