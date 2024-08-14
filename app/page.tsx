@@ -289,19 +289,19 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <div className="grid gap-2">
-                  <Button variant="outline" asChild>
+                  <Button asChild variant="outline">
                     <FileIcon className="mr-2 h-4 w-4" />
                     <Link href="products/pdf-reports">
                     Income Tax Return
                     </Link>
                   </Button>
-                  <Button variant="outline" asChild>
+                  <Button variant="outline">
                     <FileIcon className="mr-2 h-4 w-4" />
                     <Link href="products/pdf-reports">
                     Payroll Tax Report
                     </Link>
                   </Button>
-                  <Button variant="outline" asChild>
+                  <Button variant="outline">
                     <FileIcon className="mr-2 h-4 w-4" />
                     <Link href="products/pdf-reports">
                     Sales Tax Report
