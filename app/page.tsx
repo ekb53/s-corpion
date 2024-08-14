@@ -170,8 +170,10 @@ export default function Home() {
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 font-medium hover:text-primary">
+              <Button variant="ghost">
               Products
               <ChevronDownIcon className="h-4 w-4" />
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuItem>
@@ -229,12 +231,16 @@ export default function Home() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          <Button variant="ghost">
           <Link href="/about" className="font-medium hover:text-primary" prefetch={false}>
             About
           </Link>
+          </Button>
+          <Button variant="ghost">
           <Link href="/contact" className="font-medium hover:text-primary" prefetch={false}>
             Contact
           </Link>
+          </Button>
         </nav>
       </div>
       <div className="flex items-center gap-4">
