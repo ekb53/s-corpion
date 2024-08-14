@@ -163,7 +163,7 @@ export default function Home() {
           <span className="font-bold">S-corpion</span>
         </Link>
         <nav className="hidden gap-4 md:flex">
-          <Link href="/" className="font-medium hover:text-primary" prefetch={false}>
+          <Link href="/" className={buttonVariants({ variant: "outline" })} prefetch={false}>
             Dashboard
           </Link>
           <DropdownMenu>
@@ -173,7 +173,7 @@ export default function Home() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuItem>
-                <Link href="/products/pdf-reports" prefetch={false}>
+                <Link href="/products/pdf-reports" className={buttonVariants({ variant: "outline" })} prefetch={false}>
                   PDF Reports
                 </Link>
               </DropdownMenuItem>
