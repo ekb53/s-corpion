@@ -160,7 +160,7 @@ export default function Home() {
       <div className="flex items-center gap-4">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
 {/*           <SnailIcon className="h-6 w-6" /> */}
-          <img src="public/scorpion.svg" alt="S-Corpion Logo" width="100" height="100" />
+          <img src="/scorpion.svg" alt="S-Corpion Logo" width="50" height="50" />
           <span className="font-bold">S-corpion</span>
         </Link>
         <nav className="hidden gap-4 md:flex">
