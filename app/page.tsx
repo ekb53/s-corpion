@@ -16,7 +16,7 @@ import { Progress } from "@/components/ui/progress"
 import Image from "next/image";
 import { useRouter } from 'next/router'
 import { AuthProvider } from '@/contexts/AuthContext'
-import { ChevronsUpDown } "lucide-react"
+import { ChevronsUpDown } from "lucide-react"
 
 export default function Home() {
   return (
