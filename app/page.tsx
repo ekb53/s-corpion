@@ -460,8 +460,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-    </div>
-    <footer className="bg-muted py-6 text-sm">
+      <footer className="bg-muted py-6 text-sm">
         <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
           <p>&copy; 2024 Reasonable Salary. All rights reserved.</p>
           <nav className="flex flex-wrap justify-center md:justify-end items-center gap-4">
@@ -486,6 +485,7 @@ export default function Home() {
           </nav>
         </div>
       </footer>
+    </div>
   )
 }
 
