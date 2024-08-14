@@ -159,7 +159,8 @@ export default function Home() {
 <header className="flex items-center justify-between bg-background px-4 py-3 shadow-sm sm:px-6 lg:px-8">
       <div className="flex items-center gap-4">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
-          <SnailIcon className="h-6 w-6" />
+{/*           <SnailIcon className="h-6 w-6" /> */}
+          <img src="public/scorpion.svg" alt="S-Corpion Logo" width="100" height="100" />
           <span className="font-bold">S-corpion</span>
         </Link>
         <nav className="hidden gap-4 md:flex">
