@@ -20,7 +20,7 @@ import { AuthProvider } from '@/contexts/AuthContext'
 export default function Home() {
   return (
 <div className="flex min-h-screen flex-col bg-background">
-      <header className="sticky top-0 z-40 w-full border-b bg-background">
+{/*       <header className="sticky top-0 z-40 w-full border-b bg-background">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <div className="flex items-center">
             <Link href="#" className="flex items-center gap-2 text-lg font-semibold mr-6" prefetch={false}>
@@ -153,7 +153,121 @@ export default function Home() {
             </DropdownMenu>
           </div>
         </div>
-      </header>
+      </header> */}
+
+<header className="flex items-center justify-between bg-background px-4 py-3 shadow-sm sm:px-6 lg:px-8">
+      <div className="flex items-center gap-4">
+        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+          <SnailIcon className="h-6 w-6" />
+          <span className="font-bold">S-corpion</span>
+        </Link>
+        <nav className="hidden gap-4 md:flex">
+          <Link href="/" className="font-medium hover:text-primary" prefetch={false}>
+            Dashboard
+          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 font-medium hover:text-primary">
+              Products
+              <ChevronDownIcon className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem>
+                <Link href="/products/pdf-reports" prefetch={false}>
+                  PDF Reports
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/products/compensation-templates" prefetch={false}>
+                  Compensation Templates
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/products/business-roles" prefetch={false}>
+                  Business Roles
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/products/tax-compliance" prefetch={false}>
+                  Tax Compliance
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 font-medium hover:text-primary">
+              Resources
+              <ChevronDownIcon className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem>
+                <Link href="/resources/upcoming-tax-deadlines" prefetch={false}>
+                  Upcoming Tax Deadlines
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/resources/tax-preparation-status" prefetch={false}>
+                  Tax Preparation Status
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/resources/irs-updates" prefetch={false}>
+                  IRS Updates
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/resources/state-tax-changes" prefetch={false}>
+                  State Tax Changes
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/resources/audit-preparation" prefetch={false}>
+                  Audit Preparation
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Link href="/about" className="font-medium hover:text-primary" prefetch={false}>
+            About
+          </Link>
+          <Link href="/contact" className="font-medium hover:text-primary" prefetch={false}>
+            Contact
+          </Link>
+        </nav>
+      </div>
+      <div className="flex items-center gap-4">
+        <Link href="/settings/profile" prefetch={false}>
+          <Button variant="outline" className="hidden sm:inline-flex">
+            Login
+          </Button>
+        </Link>
+        <Link href="/settings/signup" prefetch={false}>
+          <Button className="hidden sm:inline-flex">
+            Sign Up
+          </Button>
+        </Link>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <SettingsIcon className="h-5 w-5" />
+              <span className="sr-only">Settings</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>
+              <Link href="/settings/preferences" className="w-full">
+                Settings
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/settings/logout" className="w-full">
+                Logout
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </header>
+  
       <main className="container mx-auto px-4 md:px-0">
         <section className="container py-12 md:py-16">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
