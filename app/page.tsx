@@ -272,6 +272,11 @@ export default async function Home() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>
+              <Link href="/settings/profile" className="w-full">
+                Profile
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
               <Link href="/settings/preferences" className="w-full">
                 Settings
               </Link>
