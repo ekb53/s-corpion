@@ -138,7 +138,7 @@ export default function Component() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <Link href="/settings/profile" prefetch={false}>
+        <Link href="/settings/login" prefetch={false}>
           <Button variant="outline" className="hidden sm:inline-flex">
             Login
           </Button>
@@ -156,6 +156,11 @@ export default function Component() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
+            <DropdownMenuItem>
+              <Link href="/settings/profile" className="w-full">
+                Profile
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/settings/preferences" className="w-full">
                 Settings
