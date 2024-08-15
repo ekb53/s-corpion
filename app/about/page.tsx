@@ -124,7 +124,7 @@ export default function Home() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <Link href="/settings/profile" prefetch={false}>
+        <Link href="/settings/login" prefetch={false}>
           <Button variant="outline" className="hidden sm:inline-flex">
             Login
           </Button>
