@@ -12,7 +12,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { ChevronsUpDown } from  "lucide-react"
+import { ChevronsUpDown } from "lucide-react"
 
 export default function Component() {
   return (
