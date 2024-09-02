@@ -91,12 +91,23 @@ export default function PDFReportsPage() {
     roleOptions: { role: string; salary: number }[];
   }
 
+  const fixedRoles = [
+  { role: 'Accountant', salary: 73560 },
+  { role: 'Tax Preparer', salary: 46860 },
+  { role: 'Payroll Manager', salary: 73810 },
+  { role: 'Tax Auditor', salary: 55640 },
+  { role: 'Tax Consultant', salary: 83980 },
+];
 
    const ComboboxDemo: React.FC<ComboboxDemoProps> = ({ index, value, onChange, roleOptions }) => {
     const [open, setOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    const [localRoleOptions, setLocalRoleOptions] = useState<{ role: string; salary: number; description?: string }[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [localRoleOptions, setLocalRoleOptions] = useState<{ role: string; salary: number; description?: string }[]>([]);
+    // const [isLoading, setIsLoading] = useState(false);
+
+    const filteredRoles = fixedRoles.filter(role => 
+    role.role.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
     useEffect(() => {
       const fetchOptions = async () => {
@@ -127,57 +138,50 @@ export default function PDFReportsPage() {
 
     return (
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            className="w-[300px] justify-between"
-          >
-            {value || "Select business role..."}
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[300px] p-0">
-          <Command>
-            <CommandInput 
-              placeholder="Search business role..." 
-              onValueChange={setSearchTerm}
-            />
-            {isLoading ? (
-              <div className="p-2 text-center">Loading...</div>
-            ) : (
-              <>
-                <CommandEmpty>No role found.</CommandEmpty>
-                <CommandGroup>
-                  {localRoleOptions.map((role) => (
-                    <CommandItem
-                      key={role.role}
-                      value={role.role}
-                      onSelect={() => {
-                        onChange(index, role.role, role.salary);
-                        setOpen(false);
-                      }}
-                    >
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          value === role.role ? "opacity-100" : "opacity-0"
-                        )}
-                      />
-                      <div>
-                        <div>{role.role}</div>
-                        {role.description && <div className="text-sm text-gray-500">{role.description}</div>}
-                        <div className="text-sm font-semibold">${role.salary.toLocaleString()}/year</div>
-                      </div>
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </>
-            )}
-          </Command>
-        </PopoverContent>
-      </Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className="w-[300px] justify-between"
+        >
+          {value || "Select business role..."}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[300px] p-0">
+        <Command>
+          <CommandInput 
+            placeholder="Search business role..." 
+            onValueChange={setSearchTerm}
+          />
+          <CommandEmpty>No role found.</CommandEmpty>
+          <CommandGroup>
+            {filteredRoles.map((role) => (
+              <CommandItem
+                key={role.role}
+                value={role.role}
+                onSelect={() => {
+                  onChange(index, role.role, role.salary);
+                  setOpen(false);
+                }}
+              >
+                <Check
+                  className={cn(
+                    "mr-2 h-4 w-4",
+                    value === role.role ? "opacity-100" : "opacity-0"
+                  )}
+                />
+                <div>
+                  <div>{role.role}</div>
+                  <div className="text-sm font-semibold">${role.salary.toLocaleString()}/year</div>
+                </div>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </Command>
+      </PopoverContent>
+    </Popover>
     )
   }
   
@@ -246,34 +250,39 @@ export default function PDFReportsPage() {
 }, [fetchTemplates, user]);
 
   const generatePDF = () => {
-    const doc = new jsPDF()
-    
-    doc.setFontSize(22)
-    doc.text('Tax Report', 105, 20, { align: 'center' })
-    
-    doc.setFontSize(16)
-    doc.text(`Company: ${companyName}`, 20, 40)
-    doc.text(`Revenue: $${revenue.toLocaleString()}`, 20, 50)
-    
-    doc.setFontSize(14)
-    doc.text('Business Roles:', 20, 70)
-    
-    businessRoles.forEach((role, index) => {
-      doc.text(`${role.role}: ${role.hours} hours - $${role.salary.toLocaleString()}/year`, 30, 80 + (index * 10))
-    })
+  const doc = new jsPDF();
+  
+  doc.setFontSize(22);
+  doc.text('Tax Report', 105, 20, { align: 'center' });
+  
+  doc.setFontSize(16);
+  doc.text(`Company: ${companyName}`, 20, 40);
+  doc.text(`Revenue: $${revenue.toLocaleString()}`, 20, 50);
+  
+  doc.setFontSize(14);
+  doc.text('Business Roles:', 20, 70);
+  
+  let totalSalary = 0;
+  businessRoles.forEach((role, index) => {
+    const annualSalary = (role.salary / 2080) * role.hours * 52; // Assuming 2080 work hours per year
+    totalSalary += annualSalary;
+    doc.text(`${role.role}: ${role.hours} hours/week - $${annualSalary.toLocaleString()}/year`, 30, 80 + (index * 10));
+  });
 
-    if (includeChart) {
-      // Here you would generate and add a chart
-      doc.text('Chart included', 20, 80 + (businessRoles.length * 10) + 20)
-    }
-    
-    doc.save('tax-report.pdf')
-    
-    toast({
-      title: "PDF Generated",
-      description: "Your tax report has been generated and downloaded.",
-    })
+  doc.text(`Estimated Total Compensation: $${totalSalary.toLocaleString()}/year`, 20, 80 + (businessRoles.length * 10) + 20);
+
+  if (includeChart) {
+    // Here you would generate and add a chart
+    doc.text('Chart included', 20, 80 + (businessRoles.length * 10) + 40);
   }
+  
+  doc.save('tax-report.pdf');
+  
+  toast({
+    title: "PDF Generated",
+    description: "Your tax report has been generated and downloaded.",
+  });
+};
 
   const saveTemplate = async () => {
   if (!user) {
