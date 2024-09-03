@@ -19,8 +19,6 @@ S-Corp. Scorp. Scorpion! Get it?
 
 Currently launched on Vercel at https://s-corpion.vercel.app
 
-Have an interest in the product? Sign up at https://reasonablesalary.com
-
 Stack:
 Next.JS - Typescript
 Supabase
